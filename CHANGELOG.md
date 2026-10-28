@@ -6,6 +6,7 @@ All notable changes to this dataset are documented here.
 
 ### Added
 - `scripts/validate.py`, `scripts/find_duplicates.py`, `scripts/apply_corrections.py` and `scripts/build_release.py`.
+- Duplicate check compares text after joining hyphen-split words ("re- activate"); stored text keeps the sender's spelling.
 - Single-file release build with `subset`, `template_group` and a fixed 70/15/15 `split` grouped by template.
 - Audit of v0.1 in `docs/audit-v0.1.md`.
 
@@ -13,7 +14,6 @@ All notable changes to this dataset are documented here.
 - Corrections in `corrections/v0.1.1.csv`, checked against the screenshots:
   - NG-REAL-0005: restored the "State:" label that was absorbed into a placeholder.
   - NG-REAL-0008: kept the claimed title, "Dr. [NAME]".
-  - NG-REAL-0011 and NG-REAL-0072: notes now say the texts differ in one word.
   - NG-REAL-0044: noted that two bubbles are joined and the second is cut off.
   - KE-REAL-0002: noted that the screenshot does not show the closing "Thank you.".
 - KE-REAL-0010: removed a real paybill number from the review notes (applied directly, not listed in the corrections file).
