@@ -1,6 +1,7 @@
 """Find duplicate and near-duplicate messages, and duplicate screenshots.
 
-Messages are compared after lower-casing and collapsing punctuation and spacing.
+Messages are compared after lower-casing, joining hyphen-split words and
+collapsing punctuation and spacing.
 Pairs at or above the similarity threshold are joined into template groups,
 which must stay on one side of any train/test split.
 
@@ -23,7 +24,9 @@ VISUAL_MATCH_BITS = 6
 
 
 def normalise(text):
-    text = re.sub(r"[^\w\[\]\s]", " ", text.lower())
+    """Comparison key only; stored text keeps the sender's spelling, which is a scam signal."""
+    text = re.sub(r"(\w)-\s+(\w)", r"\1\2", text.lower())
+    text = re.sub(r"[^\w\[\]\s]", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 
 

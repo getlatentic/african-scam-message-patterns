@@ -15,7 +15,7 @@ python3 scripts/find_duplicates.py   # needs Pillow
 |---|---|
 | Records | 131: KE 60 (10 real, 50 synthetic), NG screenshots 61, NG contributor 10. Matches the paper. |
 | Taxonomy | All 68 subtypes used. Labels match `taxonomy_id` in every record. Tactics and requested actions are all in the vocabularies. 2 records have no subtype. |
-| Duplicates | 0 exact text duplicates. 3 template clusters (15 records) at similarity ≥ 0.8. 3 byte-identical image pairs, 1 visually identical pair. No missing record. |
+| Duplicates | 1 pair identical after normalisation (0011/0072, separate sends; both kept). 3 template clusters (15 records) at similarity ≥ 0.8. 3 byte-identical image pairs, 1 visually identical pair. No missing record. |
 | Transcription | 68 records checked against their images: 64 match, 2 minor, 1 error, 1 unconfirmed. |
 | Redaction | 4 judgement calls in message text; 1 real paybill number in `review_notes`. |
 | Release blockers | Unredacted screenshots are public; Na Lie source uncredited; no train/test split; no inter-annotator agreement. |
@@ -50,15 +50,14 @@ Correctly kept minimal: message spelling is preserved, which the paper explains.
 
 ### Deduplication
 
-Method (`scripts/find_duplicates.py`): case, spacing and punctuation normalised, then exact match and `difflib` similarity ≥ 0.8 across all three files; images compared by MD5 and an 8×8 difference hash.
+Method (`scripts/find_duplicates.py`): case, spacing and punctuation normalised and hyphen-split words joined ("re- activate" → "reactivate"), for comparison only, then exact match and `difflib` similarity ≥ 0.8 across all three files; images compared by MD5 and an 8×8 difference hash.
 
-- **Exact duplicates:** none.
+- **Exact duplicates:** one pair, REAL-0011 (screenshot) and REAL-0072 (contributor). Their originals have different agent names and numbers, so both are kept as separate sends, as their notes say. Stored text keeps the sender's spelling ("re- activate" vs "reactivate"); only the comparison normalises it.
 - **Cross-set duplicate:** REAL-0010 (screenshot) duplicated REAL-0071 (contributor). The screenshot copy was retired and 0071 kept. This is correct, but the README and paper do not mention it. Add it to paper §5.
 - **Template clusters**, kept as separate incidents (correct), but each cluster must stay on one side of any split:
   - **"System upgrade, ATM card de-activated, call customer care" (10 records):** REAL-0011, 0012, 0015, 0016, 0018, 0020, 0021, 0038, 0039, 0072.
   - **"BVN validation in compliance with CBN" (3 records):** REAL-0037, 0051, 0054.
   - **"New BVN policy by the CBN" (2 records):** REAL-0036, 0059.
-- **0011 vs 0072:** the review notes say their redacted text is identical. It differs in one place ("re- activate" vs "reactivate"). Fix the note or the text.
 - **Images:** 3 byte-identical pairs and 1 visually identical pair. All are linked to existing records or noted as context (9059355 holds the buyer's own replies for REAL-0035). This matches the paper's "67 image files" account. No screenshot is missing a record.
 
 ### Formatting
@@ -125,7 +124,7 @@ What each method caught (the slide asks for this):
 
 ### Error correction and final check
 
-Applied in v0.1.1 through `corrections/v0.1.1.csv`: NG-REAL-0005 (restored "State:"), NG-REAL-0008 ("Dr. [NAME]"), the 0011/0072 notes, the NG-REAL-0044 note, and a note on KE-REAL-0002. The paybill number in KE-REAL-0010's notes was removed directly (not listed in the corrections file, so the number is not copied into it); remove it in the workbook too. The KE-REAL-0002 text itself is unchanged until the contributor's submitted text is checked. Mirror these rows in the source workbooks.
+Applied in v0.1.1 through `corrections/v0.1.1.csv`: NG-REAL-0005 (restored "State:"), NG-REAL-0008 ("Dr. [NAME]"), the NG-REAL-0044 note, and a note on KE-REAL-0002. The paybill number in KE-REAL-0010's notes was removed directly (not listed in the corrections file, so the number is not copied into it); remove it in the workbook too. The KE-REAL-0002 text itself is unchanged until the contributor's submitted text is checked. Mirror these rows in the source workbooks.
 
 ## 4. Quality control
 
