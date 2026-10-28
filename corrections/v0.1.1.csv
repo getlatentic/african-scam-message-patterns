@@ -1,5 +1,7 @@
 observation_id,field,find,replace,reason
-AF-SCAM-NG-REAL-0005,message_text_redacted,(2/2) [ADDRESS]. Country: Nigeria.,(2/2) [ADDRESS]. State: [ADDRESS]. Country: Nigeria.,"The screenshot reads ""(2/2) <city>. State: <state>. Country: Nigeria.""; the label ""State:"" had been absorbed into the placeholder."
+AF-SCAM-NG-REAL-0005,message_text_redacted,"City: [ADDRESS]
+(2/2) [ADDRESS]. Country: Nigeria.","City: Eziama
+(2/2) Aba. State: Abia. Country: Nigeria.","Only the street needs [ADDRESS]; town, state and country are kept, as in other records (Lagos, Abuja, Calabar). The address is the scammer's drop address, so it cannot identify the recipient. The screenshot reads ""City: Eziama (2/2) Aba. State: Abia."""
 AF-SCAM-NG-REAL-0008,message_text_redacted,"Regards, [NAME] ""HRM""","Regards, Dr. [NAME] ""HRM""","The screenshot signs off ""Dr. <name>""; the claimed title is part of the lure and identifies no one."
 AF-SCAM-NG-REAL-0044,review_notes,Top of message cut off.,"Top of message cut off. Two separate bubbles are joined in this record; the second is cut off at the bottom after the clearance fee, so it may continue.",Screenshot check: the record joins two bubbles and the second is cropped.
 AF-SCAM-KE-REAL-0002,review_notes,,"The screenshot ends at ""ALLOWED)""; the closing ""Thank you."" is not visible in it. Confirm it is in the contributor's submitted text.",Screenshot check could not confirm the last line.

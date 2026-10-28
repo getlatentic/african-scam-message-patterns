@@ -97,7 +97,7 @@ Method (`scripts/find_duplicates.py`): case, spacing and punctuation normalised 
 **64 match, 2 minor, 1 error, 1 unconfirmed.**
 
 **Errors**
-- **NG-REAL-0005:** the image reads "… State: <state>. Country: Nigeria.", but the transcription has "[ADDRESS]. Country: Nigeria.", so the field label "State:" was swallowed by the placeholder. It should read "[ADDRESS]. State: [ADDRESS]. Country: Nigeria."
+- **NG-REAL-0005:** the image reads "City: <town> (2/2) <town>. State: <state>. Country: Nigeria.", but the transcription had "City: [ADDRESS] (2/2) [ADDRESS]. Country: Nigeria.": the label "State:" was swallowed, and town and state were redacted although the policy only redacts street addresses and venues, and other records keep towns (Lagos, Abuja, Calabar). The address is the scammer's drop address, so it cannot identify the US recipient. Fixed: only the name and street stay redacted.
 
 **Unconfirmed**
 - **KE-REAL-0002:** the transcription ends with "Thank you.", but the screenshot ends at "ALLOWED)" because the message bubble is cut off. The Kenya records came in as text, so the line may be in the contributor's submission. A note now asks for that check.
@@ -124,7 +124,7 @@ What each method caught (the slide asks for this):
 
 ### Error correction and final check
 
-Applied in v0.1.1 through `corrections/v0.1.1.csv`: NG-REAL-0005 (restored "State:"), NG-REAL-0008 ("Dr. [NAME]"), the NG-REAL-0044 note, and a note on KE-REAL-0002. The paybill number in KE-REAL-0010's notes was removed directly (not listed in the corrections file, so the number is not copied into it); remove it in the workbook too. The KE-REAL-0002 text itself is unchanged until the contributor's submitted text is checked. Mirror these rows in the source workbooks.
+Applied in v0.1.1 through `corrections/v0.1.1.csv`: NG-REAL-0005 (town, state and "State:" label restored; only name and street redacted), NG-REAL-0008 ("Dr. [NAME]"), the NG-REAL-0044 note, and a note on KE-REAL-0002. The paybill number in KE-REAL-0010's notes was removed directly (not listed in the corrections file, so the number is not copied into it); remove it in the workbook too. The KE-REAL-0002 text itself is unchanged until the contributor's submitted text is checked. Mirror these rows in the source workbooks.
 
 ## 4. Quality control
 

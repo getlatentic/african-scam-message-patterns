@@ -12,7 +12,7 @@ All notable changes to this dataset are documented here.
 
 ### Fixed
 - Corrections in `corrections/v0.1.1.csv`, checked against the screenshots:
-  - NG-REAL-0005: restored the "State:" label that was absorbed into a placeholder.
+  - NG-REAL-0005: restored the town, state and "State:" label; only the name and street stay redacted, as the privacy policy asks.
   - NG-REAL-0008: kept the claimed title, "Dr. [NAME]".
   - NG-REAL-0044: noted that two bubbles are joined and the second is cut off.
   - KE-REAL-0002: noted that the screenshot does not show the closing "Thank you.".
