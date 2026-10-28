@@ -16,6 +16,9 @@ A dataset of scam and fraud messages from African countries, labelled with a sha
 | `docs/verification_protocol.md` | How fraud status is established and recorded |
 | `docs/privacy_and_consent.md` | Redaction, consent and release rules |
 | `examples/` | Usage examples |
+| `scripts/` | Validation, duplicate detection, corrections and release build |
+| `corrections/` | Record corrections, one file per release, to mirror in the source workbooks |
+| `docs/audit-v0.1.md` | Audit of v0.1: taxonomy, duplicates, transcriptions and release readiness |
 
 ## Record origin
 
@@ -44,6 +47,17 @@ for col in ["tactics", "requested_action", "risk_indicators", "language_tags"]:
 real = ke[ke.record_origin == "real_world"]
 print(real.explode("tactics").tactics.value_counts())
 ```
+
+## Checks and release
+
+```bash
+python3 scripts/validate.py                                   # schema, taxonomy, vocabularies, redaction
+python3 scripts/find_duplicates.py                            # near-duplicate messages and screenshots (needs Pillow)
+python3 scripts/apply_corrections.py corrections/v0.1.1.csv   # apply a corrections file
+python3 scripts/build_release.py                              # release/afriscam-v0.1.1.jsonl and its dataset card
+```
+
+`validate.py` exits non-zero on schema errors and lists warnings for review. `build_release.py` writes one JSON Lines file with a `subset`, `template_group` and `split` column, plus a Hugging Face dataset card, to `release/` (not committed). Use `--exclude-subset ng_public` to leave out the public screenshot set.
 
 ## Status
 
