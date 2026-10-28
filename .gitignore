@@ -1,3 +1,7 @@
 # Source workbooks may contain restricted verification data
 *.xlsx
 ~$*
+
+# Built by scripts/build_release.py
+release/
+__pycache__/
