@@ -1,3 +1,7 @@
 # Source workbooks may contain restricted verification data
 *.xlsx
 ~$*
+
+# Screenshots are unredacted and are kept outside the repository
+data/kenya/screenshots/
+data/nigeria/Fake Sms Images/
