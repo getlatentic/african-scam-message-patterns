@@ -1,3 +1,16 @@
+---
+license: cc-by-4.0
+language:
+- en
+- sw
+pretty_name: African Scam Message Patterns
+task_categories:
+- text-classification
+configs:
+- config_name: default
+  data_files: data/afriscam-v0.1.jsonl
+---
+
 # African Scam Message Patterns
 
 A dataset of scam and fraud messages from African countries, labelled with a shared taxonomy of scam types, persuasion tactics, claimed identities, requested actions and verification status. It supports research, evaluation of scam-detection models, and public awareness work. Work in progress.
@@ -26,6 +39,7 @@ Real-world records may have a `screenshot_file` pointing to the original screens
 ## Format
 
 - UTF-8 CSV, one row per message.
+- `data/afriscam-v0.1.jsonl` combines all the CSVs into one file, one JSON object per line. List columns are real lists, and `source_file` names the CSV each record came from. Rebuild it with `python3 scripts/combine_data.py`. The Hugging Face viewer shows this file.
 - `tactics`, `requested_action`, `risk_indicators` and `language_tags` are JSON arrays, e.g. `["authority_claim", "urgency_pressure"]`. An empty cell means not yet labelled.
 - `language_tags` use ISO 639-1 codes (`en`, `sw`). Sheng has no ISO code and is tagged `sw`, with a note in `review_notes`.
 - Personal and financial details are replaced with placeholders: `[PHONE]`, `[LINK]`, `[EMAIL]`, `[PAYBILL]`, `[ACCOUNT]`, `[AMOUNT]`, `[ORGANIZATION]`, `[NAME]`, `[ADDRESS]`, `[CODE]`.
